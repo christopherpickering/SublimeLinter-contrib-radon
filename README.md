@@ -1,7 +1,7 @@
-SublimeLinter-radon
+SublimeLinter-contrib-radon
 ================================
 
-[![Build Status](https://travis-ci.com/christopherpickering/SublimeLinter-radon.svg?branch=master)](https://travis-ci.com/christopherpickering/SublimeLinter-radon)
+[![Build Status](https://travis-ci.com/christopherpickering/SublimeLinter-contrib-radon.svg?branch=master)](https://travis-ci.com/christopherpickering/SublimeLinter-contrib-radon)
 
 This linter plugin for [SublimeLinter](https://github.com/SublimeLinter/SublimeLinter) provides an interface to [radon](https://radon.readthedocs.io/en/latest/index.html) cyclomatic complexity. It will be used with files that have the “python” syntax.
 
