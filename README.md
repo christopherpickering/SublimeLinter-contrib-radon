@@ -1,7 +1,3 @@
-This is a template. For "how to make a linter", please check [the HOWTO](HOWTO.md).
-
------------------------------------------------------------------
-
 SublimeLinter-contrib-radon
 ================================
 
@@ -21,10 +17,3 @@ In order for `radon` to be executed by SublimeLinter, you must ensure that its p
 ## Settings
 - SublimeLinter settings: http://sublimelinter.readthedocs.org/en/latest/settings.html
 - Linter settings: http://sublimelinter.readthedocs.org/en/latest/linter_settings.html
-
-Additional SublimeLinter-radon settings:
-
-|Setting|Description    |
-|:------|:--------------|
-|foo    |Something.     |
-|bar    |Something else.|
