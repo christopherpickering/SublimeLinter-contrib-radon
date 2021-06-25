@@ -42,14 +42,7 @@ class Radon(PythonLinter):
 
         if match:
 
-            warning = "%s (%s)" % (match.group('code'), message)
-            message = (
-                "%s has a complexity rank of %s, and scored %s.\n%s"
-                % (
-                    type_code[match.group('type')],
-                    match.group('code'),
-                    message,
-                    message_code[match.group('code')])
-                 )
+            warning = "%s %s (%s)" % (type_code[match.group('type')], match.group('code'), message)
+            message = message_code[match.group('code')]
 
         return match, line, col, error, warning, message, near
