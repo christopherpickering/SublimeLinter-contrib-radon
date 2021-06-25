@@ -1,9 +1,11 @@
-SublimeLinter-contrib-radon
+SublimeLinter-radon
 ================================
 
-[![Build Status](https://travis-ci.org/SublimeLinter/SublimeLinter-contrib-radon.svg?branch=master)](https://travis-ci.org/SublimeLinter/SublimeLinter-contrib-radon)
+[![Build Status](https://travis-ci.com/christopherpickering/SublimeLinter-radon.svg?branch=master)](https://travis-ci.com/christopherpickering/SublimeLinter-radon)
 
-This linter plugin for [SublimeLinter](https://github.com/SublimeLinter/SublimeLinter) provides an interface to [radon](__linter_homepage__). It will be used with files that have the “__syntax__” syntax.
+This linter plugin for [SublimeLinter](https://github.com/SublimeLinter/SublimeLinter) provides an interface to [radon](https://radon.readthedocs.io/en/latest/index.html) cyclomatic complexity. It will be used with files that have the “python” syntax.
+
+Any python function/class/method with a complexity over 5 will have a warning showing the current complexity values.
 
 ## Installation
 SublimeLinter must be installed in order to use this plugin. 
