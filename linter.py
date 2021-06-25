@@ -42,6 +42,6 @@ class Radon(PythonLinter):
         #logger.error(super().split_match(match))
         if match:
 
-            message = "This %s had a Radon cyclomatic complexity rank of %s, and scored %s." % (type_code[match.group('type')], match.group('code'), message,  message_code[match.group('code')])
+            message = "This %s had a Radon cyclomatic complexity rank of %s, and scored %s.\n%s" % (type_code[match.group('type')], match.group('code'), message,  message_code[match.group('code')])
 
         return match, line, col, error, warning, message, near
