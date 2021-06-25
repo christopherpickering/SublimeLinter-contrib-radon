@@ -1,6 +1,8 @@
-SublimeLinter-contrib-__linter__
+SublimeLinter-contrib-radon
 -------------------------------
-This linter plugin for SublimeLinter provides an interface to __linter__.
+This linter plugin for SublimeLinter provides an interface to radon.
+
+[Radon](https://pypi.org/project/radon/) must be installed.
 
 For more information, please see:
-https://github.com/__user__/SublimeLinter-contrib-__linter__
+https://github.com/christopherpickering/SublimeLinter-contrib-radon
