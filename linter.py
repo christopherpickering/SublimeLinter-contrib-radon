@@ -1,6 +1,6 @@
 from SublimeLinter.lint import PythonLinter
-import logging
-logger = logging.getLogger('SublimeLinter.plugins.radon')
+#import logging
+#logger = logging.getLogger('SublimeLinter.plugins.radon')
 
 
 type_code = {
@@ -38,10 +38,10 @@ class Radon(PythonLinter):
         We override this to customize the message.
         """
         match, line, col, error, warning, message, near = super().split_match(match)
-        logger.error(match, line, col, error, warning, message, near)
-        logger.error(super().split_match(match))
+        #logger.error(match, line, col, error, warning, message, near)
+        #logger.error(super().split_match(match))
         if match:
 
-            message = "This %s had a Radon cyclomatic complexity rank of %s, and scored %s." % (type_code[match.group('type')], match.group('code'), message,  message_code[message])
+            message = "This %s had a Radon cyclomatic complexity rank of %s, and scored %s." % (type_code[match.group('type')], match.group('code'), message,  message_code[match.group('code')])
 
         return match, line, col, error, warning, message, near
