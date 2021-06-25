@@ -20,7 +20,7 @@ type_code = {
     "C": "class",
 }
 
-message_code {
+message_code = {
     "A": "A (1-5) low - simple block.",
     "B": "B (6-10) low - well structured and stable block.",
     "C": "C (11-20) moderate - slightly complex block.",
