@@ -29,6 +29,13 @@ class Radon(PythonLinter):
     message: M/F/C name
     code: A-F complexity rank
     warning: numberic value of complexity
+
+    Message output: None
+
+    Code output: <code>
+
+    Warning output:
+    <type_code> <message> has a complexity rank of <code> (<warning>).
     """
 
     cmd = "radon cc ${temp_file} -s -n B"
@@ -51,11 +58,13 @@ class Radon(PythonLinter):
         We override this to customize the message.
         """
         output = super().split_match(match)
-        output["warning"] = "%s %s (%s)" % (
+        output["warning"] = ""
+
+        output["message"] = "%s %s has a complexity rank of %s (%s)" % (
             type_code[match.group("type")],
-            match.group("code"),
             match.group("message"),
+            match.group("code"),
+            match.group("warning"),
         )
-        output["message"] = message_code[match.group("code")]  # as an example
 
         return output
