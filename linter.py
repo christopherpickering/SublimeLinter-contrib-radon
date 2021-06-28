@@ -59,20 +59,17 @@ class Radon(PythonLinter):
         """
         output = super().split_match(match)
 
-        error_warning_message = "%s %s has a complexity rank of" % (
-            type_code[match.group("type")],
-            match.group("message"),
-        )
-
         if match.group("type") in ["A", "B", "C"]:
-            output["warning"] = error_warning_message
+            output["warning"] = match.group("code")
             output["error"] = None
 
         else:
-            output["error"] = error_warning_message
+            output["error"] = match.group("code")
             output["warning"] = None
 
-        output["message"] = "%s (%s)." % (
+        output["message"] = "%s %s has a complexity rank of %s (%s)." % (
+            type_code[match.group("type")],
+            match.group("message"),
             match.group("code"),
             match.group("warning"),
         )
