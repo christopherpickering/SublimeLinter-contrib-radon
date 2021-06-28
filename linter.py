@@ -1,9 +1,8 @@
 """Sublimelinter plugin for Radon cyclomatic complexity."""
 from SublimeLinter.lint import PythonLinter
 
-
 type_code = {
-    'F': "Function",
+    "F": "Function",
     "M": "Method",
     "C": "Class",
 }
@@ -19,18 +18,31 @@ message_code = {
 
 
 class Radon(PythonLinter):
-    """Radon complexity linter."""
+    """Radon complexity linter.
 
-    cmd = 'radon cc ${file_on_disk} -s -n B'
-    regex = (
-        r'^\s+(?P<type>[a-zA-z])\s'
-        r'(?P<line>\d+):(?P<col>\d+).+-\s'
-        r'(?P<code>[a-zA-Z])\s(?P<warning>\()(?P<message>\d+)'
-    )
-    multiline = True
+    Regex output
+    ============
+
+    type: M/F/C (Method, Function, Class)
+    line: line number of exception
+    col: col number of exception
+    message: M/F/C name
+    code: A-F complexity rank
+    warning: numberic value of complexity
+    """
+
+    cmd = "radon cc ${temp_file} -s -n B"
     defaults = {
-        'selector': 'source.python',
+        "selector": "source.python",
     }
+    line_col_base = (1, 0)
+    multiline = True
+    regex = (
+        r"^\s+(?P<type>[a-zA-z])\s(?P<line>\d+):"
+        r"(?P<col>\d+)\s(?P<message>.+)\s-\s"
+        r"(?P<code>[a-zA-Z])\s\((?P<warning>\d+)\)"
+    )
+    tempfile_suffix = "py"
 
     def split_match(self, match):
         """
@@ -38,11 +50,12 @@ class Radon(PythonLinter):
 
         We override this to customize the message.
         """
-        match, line, col, error, warning, message, near = super().split_match(match)
+        output = super().split_match(match)
+        output["warning"] = "%s %s (%s)" % (
+            type_code[match.group("type")],
+            match.group("code"),
+            match.group("message"),
+        )
+        output["message"] = message_code[match.group("code")]  # as an example
 
-        if match:
-
-            warning = "%s %s (%s)" % (type_code[match.group('type')], match.group('code'), message)
-            message = message_code[match.group('code')]
-
-        return match, line, col, error, warning, message, near
+        return output
