@@ -48,7 +48,7 @@ class Radon(PythonLinter):
     regex = (
         r"^\s+(?P<type>[a-zA-z])\s(?P<line>\d+):"
         r"(?P<col>\d+)\s(?P<message>.+)\s-\s"
-        r"(?P<code>[a-zA-Z])\s\((?P<value>\d+)\)"
+        r"(?P<code>[a-zA-Z])\s\((?P<warning>\d+)\)"
     )
     tempfile_suffix = "py"
 
@@ -59,12 +59,6 @@ class Radon(PythonLinter):
         We override this to customize the message.
         """
         output = super().split_match(match)
-
-        if match.group("type") in ["A", "B", "C"]:
-            output["warning"] = match.group("code")
-
-        else:
-            output["error"] = match.group("code")
 
         output["message"] = "%s %s has a complexity rank of %s (%s)." % (
             type_code[match.group("type")],
