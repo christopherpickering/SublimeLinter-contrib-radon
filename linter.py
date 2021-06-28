@@ -34,7 +34,8 @@ class Radon(PythonLinter):
 
     Code output: <code>
 
-    Warning output:
+    Warning: if A/B/C
+    Error: all other ranks
 
     """
 
