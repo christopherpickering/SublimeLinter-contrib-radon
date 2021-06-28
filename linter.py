@@ -28,14 +28,14 @@ class Radon(PythonLinter):
     col: col number of exception
     message: M/F/C name
     code: A-F complexity rank
-    warning: numberic value of complexity
+    value: numberic value of complexity
 
-    Message output: <code> (<warning>).
+    Message output: <type_code> <message> has a complexity rank of <code> (<warning>).
 
     Code output: <code>
 
     Warning output:
-    <type_code> <message> has a complexity rank of
+
     """
 
     cmd = "radon cc ${temp_file} -s -n B"
@@ -47,7 +47,7 @@ class Radon(PythonLinter):
     regex = (
         r"^\s+(?P<type>[a-zA-z])\s(?P<line>\d+):"
         r"(?P<col>\d+)\s(?P<message>.+)\s-\s"
-        r"(?P<code>[a-zA-Z])\s\((?P<warning>\d+)\)"
+        r"(?P<code>[a-zA-Z])\s\((?P<value>\d+)\)"
     )
     tempfile_suffix = "py"
 
@@ -61,11 +61,9 @@ class Radon(PythonLinter):
 
         if match.group("type") in ["A", "B", "C"]:
             output["warning"] = match.group("code")
-            output["error"] = None
 
         else:
             output["error"] = match.group("code")
-            output["warning"] = None
 
         output["message"] = "%s %s has a complexity rank of %s (%s)." % (
             type_code[match.group("type")],
