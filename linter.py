@@ -70,7 +70,7 @@ class Radon(PythonLinter):
             type_code[match.group("type")],
             match.group("message"),
             match.group("code"),
-            match.group("warning"),
+            match.group("value"),
         )
 
         return output
